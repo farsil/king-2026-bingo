@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>King Tournament 2026 Bingo</title>
+    <link rel="stylesheet" href="style/font.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+<h1>
+    <img src="/vector/bingo.svg" alt="Bingo">
+</h1>
+<div id="root"></div>
+<template id="name-entry-template">
+    <main id="name-entry-main">
+        <form>
+            <label>
+                Scrivi il tuo nome:
+                <input type="text" id="name-entry-name" name="name"/>
+            </label>
+            <button type="submit" disabled>Inizia</button>
+        </form>
+    </main>
+</template>
+<template id="bingo-card-template">
+    <main id="bingo-card-main">
+        <h2>Fai del tuo peggio, Giocatore
+            <button>
+                <img src="/vector/edit.svg" alt="Cambia nome">
+            </button>
+        </h2>
+        <table>
+            <tbody id="bingo-table-body">
+            <tr>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+                <td>
+                    <button></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer id="bingo-card-footer">
+        <span>
+            <span class="font-big">Combinazioni vincenti</span>
+            <br/>
+            * = qualsiasi posizione
+        </span>
+        <div>
+            <img src="/vector/comb%201.svg" alt="Combinazione 1"/>
+            *
+        </div>
+        <div>
+            <img src="/vector/comb%202.svg" alt="Combinazione 2"/>
+            *
+        </div>
+        <div>
+            <img src="/vector/comb%203.svg" alt="Combinazione 3"/>
+            *
+        </div>
+        <img src="/vector/comb%204.svg" alt="Combinazione 4"/>
+        <img src="/vector/comb%205.svg" alt="Combinazione 5"/>
+        <img src="/vector/comb%206.svg" alt="Combinazione 6"/>
+        <img src="/vector/comb%207.svg" alt="Combinazione 7"/>
+    </footer>
+</template>
+</body>
+</html>
