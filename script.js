@@ -124,7 +124,7 @@ function generateBingoCard() {
 }
 
 function handleBingoCardClick(e) {
-    const activeCells = window.localStorage.getItem("active")?.split(",");
+    const activeCells = window.localStorage.getItem("active")?.split(",") ?? [];
     const buttonElement = e.target;
     if ('active' in buttonElement.dataset) {
         delete buttonElement.dataset.active;
