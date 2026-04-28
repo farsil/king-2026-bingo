@@ -1,6 +1,7 @@
 body, button, input {
     font-family: "Smooch Sans", sans-serif;
     font-size: min(3.3vw, 24px);
+    font-weight: 500;
 }
 
 body {
