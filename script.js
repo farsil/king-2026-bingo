@@ -87,11 +87,33 @@ function sfc32(a, b, c, d) {
     }
 }
 
+function getStoredSet(key) {
+    const value = window.localStorage.getItem(key);
+    return value ? new Set(value.split(",").map(Number)) : new Set();
+}
+
+function addToStoredSet(key, value) {
+    const set = getStoredSet(key);
+    if (set.size === 0) {
+        window.localStorage.setItem(key, value);
+    } else {
+        set.add(Number(value));
+        window.localStorage.setItem(key, Array.from(set.values().map(String)).join(","));
+    }
+}
+
+function removeFromStoredSet(key, value) {
+    const set = getStoredSet(key);
+    if (set.size > 0) {
+        set.delete(Number(value));
+        window.localStorage.setItem(key, Array.from(set.values().map(String)).join(","));
+    }
+}
 
 function generateBingoCard() {
     useTemplate("bingo-card-template");
     const name = window.localStorage.getItem("name");
-    const activeCells = new Set(window.localStorage.getItem("active")?.split(","));
+    const activeCells = getStoredSet("active");
 
     const mainElement = document.querySelector("main");
 
@@ -114,24 +136,45 @@ function generateBingoCard() {
                 tdButtonElement.disabled = true;
             }
             tdButtonElement.textContent = shuffledBingo[i];
-            const index = i.toString();
-            if (activeCells.has(index)) tdButtonElement.dataset.active = "true";
-            tdButtonElement.dataset.index = index;
+            if (activeCells.has(i)) tdButtonElement.dataset.active = "true";
+            tdButtonElement.dataset.index = i.toString();
             tdButtonElement.onclick = handleBingoCardClick;
             i++;
         }
     }
+
+
+    const claimedSequences = getStoredSet("claimed");
+    const footerElement = document.querySelector("footer");
+
+    i = 0;
+    for (const buttonElement of footerElement.querySelectorAll("button")) {
+        if (claimedSequences.has(i)) buttonElement.dataset.active = "true";
+        buttonElement.dataset.index = i.toString();
+        buttonElement.onclick = handleBingoSequenceClick;
+        i++;
+    }
 }
 
 function handleBingoCardClick(e) {
-    const activeCells = window.localStorage.getItem("active")?.split(",") ?? [];
     const buttonElement = e.target;
     if ('active' in buttonElement.dataset) {
         delete buttonElement.dataset.active;
-        window.localStorage.setItem("active", activeCells.filter(cell => cell !== buttonElement.dataset.index).join(","));
+        removeFromStoredSet("active", buttonElement.dataset.index);
     } else {
         buttonElement.dataset.active = "true";
-        window.localStorage.setItem("active", [...activeCells, buttonElement.dataset.index].join(","));
+        addToStoredSet("active", buttonElement.dataset.index);
+    }
+}
+
+function handleBingoSequenceClick(e) {
+    const buttonElement = e.currentTarget;
+    if ('active' in buttonElement.dataset) {
+        delete buttonElement.dataset.active;
+        removeFromStoredSet("claimed", buttonElement.dataset.index);
+    } else {
+        buttonElement.dataset.active = "true";
+        addToStoredSet("claimed", buttonElement.dataset.index);
     }
 }
 

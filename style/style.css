@@ -159,9 +159,25 @@ button:disabled {
     align-items: start;
 }
 
+#bingo-card-footer button {
+    display: flex;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
 #bingo-card-footer img {
     width: 56px;
     aspect-ratio: 1 / 1;
+}
+
+#bingo-card-footer button > .cross {
+    position: absolute;
+}
+
+#bingo-card-footer button:not([data-active]) > .cross {
+    display: none;
 }
 
 @media (max-width: 640px) {
